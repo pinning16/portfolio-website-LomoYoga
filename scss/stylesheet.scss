@@ -1,0 +1,921 @@
+@charset "utf-8";
+
+// mixin ブレイクポイント；990,767
+// $pc:1440px;
+$tab:990px;
+$sp:767px;
+
+@mixin tab  {
+    @media (max-width:($tab))  {
+        @content;
+    }
+}
+@mixin sp  {
+    @media (max-width:($sp))  {
+        @content;
+    }
+}
+
+// 変数
+// カラー
+$color-black: #282F35;
+$color-blue: #75A1BA;
+$color-white: #FFFFFF;
+$background-gray: rgba(212, 212, 212, 0.356);
+
+
+/* --------------------------------------------------------
+    共通パーツ
+  -------------------------------------------------------- */
+body {
+    // font-family: 'Noto Serif','Noto Serif JP';
+    font-family: "Hiragino Kaku Gothic Pro","Menlo","ms pgothic",sans-serif;
+
+    color: $color-black;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+    @include tab{
+      padding: 0 30px;
+    }
+}
+
+.section{
+    &__content{
+        text-align: center;
+    }
+    &__ttl{
+        font-size: 36px;
+        position: relative;
+        margin-bottom: 100px;
+        line-height: 0.8;
+        @include sp{
+          margin-bottom: 50px;
+        }
+        &::before{
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -30px; /*下線の上下位置調整*/
+            display: inline-block;
+            width: 30px; /*下線の幅*/
+            height: 2px; /*下線の太さ*/
+            -moz-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translate(-50%); /*位置調整*/
+            background-color: $color-blue; /*下線の色*/
+            @include tab{
+              width: 23px;
+            }
+        }
+        @include tab{
+          font-size: 28px;
+        }
+        @include sp{
+          // font-size: 20px;
+        }
+      }
+      &__txt{
+        font-size: 14px;
+        line-height: 1.8;
+        text-align: center;
+        margin-bottom: 5%;
+      }
+}
+/* --------------------------------------------------------
+  各セクションのCSS
+  -------------------------------------------------------- */
+// start header
+.header{
+    width: 100%;
+    position: fixed;/* bodyに対しての絶対位置指定 */
+    top: 0;
+    z-index: 999;
+    background-color: $color-black;
+    &__container{
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        padding: 0 30px;
+        @include tab{
+          width: 100%;
+          padding: 0 30px;
+        }
+        @include sp{
+          height: 45px;
+        }
+    }
+    &__logo{
+        width: 120px;
+        height: auto;
+        @include sp{
+          width: 76px;
+        }
+    }
+    &__list{
+        display: flex;
+        @include sp{
+          display: none;
+        }
+    }
+    &__item{
+        color: $color-white;
+        font-size: 14px;
+        padding-right: 40px;
+    }
+}
+// ハンバーガーメニュー追加
+.sp-nav {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background: $color-black;
+  text-align: center;
+  transform: translateX(-100%);
+  transition: all 0.6s;
+  width: 100%;
+  height: 100%;
+  &__list {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;// sp-nav 垂直
+      justify-content: center;// sp-nav 垂直中央
+  }
+  &__item {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 40px;
+}
+&__link {
+      display: block;
+
+      &:hover {
+      transform: scale(1.25);
+      }
+  }
+}
+
+/* このクラスを、jQueryで付与・削除する */
+.sp-nav.active {
+  transform: translateX(0%);
+}
+.navToggle {
+display: none;
+@include sp {
+  display: block;
+  position: absolute;
+  /* bodyに対しての絶対位置指定 */
+  right: 15px;
+  top: 15px;
+  // pointer 範囲設定
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 3;
+  &__span {
+      display: block;
+      position: absolute;    /* .navToggleに対して */
+      width: 25px;
+      border-bottom: solid 2px #FFFFFF;
+      -webkit-transition: .35s ease-in-out;
+      -moz-transition: .35s ease-in-out;
+      transition: .35s ease-in-out;
+      left: 0px;
+      &:nth-child(1) {
+          top: 0px;
+      }
+      &:nth-child(2) {
+          top: 8px;
+      }
+      &:nth-child(3) {
+          top: 16px;
+      }
+  }
+}
+}
+/* 最初のspanをマイナス45度に */
+.navToggle.active span {
+  &:nth-child(1) {
+      top: 8px;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+  }
+/* 2番目と3番目のspanを45度に */
+  &:nth-child(2),&:nth-child(3) {
+      top: 8px;
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      transform: rotate(45deg);
+  }
+}
+
+// end ハンバーガーメニュー
+// end header
+// start swiper01
+.swiper01{
+    margin-top: 60px;
+    position: relative;
+    @include sp{
+      margin-top: 45px;
+    }
+}
+@-webkit-keyframes zoomUp {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+    }
+  }
+
+  @keyframes zoomUp { /* 1.15倍させる指定 */
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+    }
+  }
+  .swiper-slide {
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .swiper-slide-active .slide-img,
+  .swiper-slide-duplicate-active .slide-img,
+  .swiper-slide-prev .slide-img { /* 12秒かけて拡大させる */
+      -webkit-animation: zoomUp 12s linear 0s;
+      animation: zoomUp 12s linear 0s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+  }
+  .slide {
+    &-img{
+      background-size: cover;
+      background-repeat: no-repeat;
+      // background-position: bottom; /* 背景画像は中央を軸に表示させる */
+      width: 100%;
+      object-fit: cover;
+      height: 100vh;
+      min-height: 100%;
+      @include tab{
+        height: 50vh;
+        // background-position: center;
+      }
+    }
+  }
+// 丸いページネーションの設定css
+.swiper-pagination-bullet-active{
+    background: $color-white;
+    padding: 5px;
+}
+.swiper-pagination-bullet{
+    padding: 5px;
+}
+// end swiper
+// start feature
+.feature{
+    padding: 60px 0 50px;
+    &__span{
+      font-size: 22px;
+      line-height: 1.5;
+
+    }
+    &__box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__txt{
+        font-size: 14px;
+        line-height: 1.5;
+        width: 73%;
+        margin-bottom: 20px;
+        @include tab{
+          // font-size: 12px;
+          line-height: 1.8;
+
+        }
+        @include sp{
+          width: 100%;
+        }
+    }
+    &__video{
+      max-width: 518px;
+      width: 100%;
+      @include sp{
+        max-width: 315px;
+      }
+    }
+}
+// start about
+.about{
+    padding:60px 0 50px;
+    background-color: $background-gray;
+    &__list{
+        display: flex;
+        @include tab{
+          flex-wrap: wrap;
+          justify-content: space-around;
+        }
+        @include sp{
+          flex-direction: column;
+          align-items: center;
+        }
+    }
+    &__item{
+        width: 35%;
+        text-align: center;
+        &:nth-of-type(2){
+            margin: 0 54px;
+            @include tab{
+              margin: 30px 0 0;
+            }
+            @include sp{
+              margin: 60px 0;
+            }
+        }
+        @include tab{
+          margin-top: 30px;
+          // width: 60%;
+        }
+        @include sp{
+          width: 100%;
+        }
+    }
+    &__icon{
+      max-width: 114px;
+      width: 100%;
+      @include sp{
+        max-width: 100px;
+      }
+    }
+    &__txt{
+        font-size: 20px;
+        font-weight: bolder;
+        margin: 50px 0  27px;
+        @include tab{
+          font-size: 18px;
+          margin: 30px 0  20px;
+        }
+        @include sp{
+          font-size: 16px;
+        }
+    }
+    &__desc{
+        font-size: 14px;
+        text-align: left;
+        line-height: 1.8;
+    }
+}
+// end about
+// start studio
+.studio{
+  padding:60px 0 50px;
+  &__content{
+    width: 73%;
+    text-align: center;
+    margin: 0 auto;
+    @include tab{
+      width: 100%;
+    }
+  }
+}
+.swiper02 {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+    &__wrapper{
+      width: 50%;
+    }
+    &__img {
+      width: 100%;
+      height: 300px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      @include sp{
+        height: 200px;
+      }
+    }
+}
+// end swiper02
+// start compaign
+.compaign{
+  padding: 60px 0 50px;
+  background-color: $background-gray;
+  &__box{
+    width: 60%;
+    margin: 0 auto;
+    @include tab{
+      width: 80%;
+    }
+    @include sp{
+      width: 100%;
+    }
+  }
+  &__img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+    @include sp{
+      margin-bottom: 20px;
+    }
+  }
+  &__link{
+    display: block;
+  }
+}
+//end compaign
+// start menu
+.menu{
+  padding:60px 0 50px;
+  &__list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include tab{
+      display: none;
+    }
+  }
+  &__item{
+    max-width: 300px;
+    width: 33%;
+    height: 250px;
+    margin-bottom: 2vh;
+    // ここからhoverコード
+    position: relative;
+    box-sizing: border-box;
+    &.one{
+      background-image: url(../img/img/01.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &.two{
+      background-image: url(../img/img/02.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &.three{
+      background-image: url(../img/img/03.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &.four{
+      background-image: url(../img/img/04.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &.five{
+      background-image: url(../img/img/05.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &.six{
+      background-image: url(../img/img/06.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  &__link {
+    height: 250px;
+    display: block;
+    text-align: center;
+    color: $color-white;
+    font-size: 18px;
+    font-weight: bolder;
+    line-height: 250px;
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.712);
+        //変化時間
+        -webkit-transition: 0.8s ease-in-out;
+    }
+  }
+  &__sp{
+    &-list{
+      display: none;
+      @include tab{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+    &-img{
+      // max-width: 270px;
+      width: 100%;
+      margin-top: 10px;
+    }
+    &-item{
+      margin-bottom: 36px;
+    }
+    &-txt{
+      font-size: 16px;
+      font-weight: bolder;
+      margin-top: 14px;
+      position: relative;
+      &::before{
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -15px; /*下線の上下位置調整*/
+        display: inline-block;
+        width: 28px; /*下線の幅*/
+        height: 1px; /*下線の太さ*/
+        -moz-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translate(-50%); /*位置調整*/
+        background-color: #555454; /*下線の色*/
+    }
+
+    }
+  }
+}
+// end menu
+// start voice
+.voice{
+  background-color: $background-gray;
+  padding:60px 100px 50px;
+  @include sp{
+    padding: 60px 30px 50px;
+  }
+}
+.swiper03{
+  max-width: 1000px;
+  width: 100%;
+  padding: 0 40px;
+  max-height: 500px;
+  // 丸いページネーションの位置
+  height: 68vh;
+  @include sp{
+    height: 80vh;
+  }
+  &__item{
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    background-color:#F0F0F0;
+    border-radius: 5px;
+    text-align: center;
+    @include tab{
+      padding: 0px;
+    }
+  }
+  &__img{
+    width: 100%;
+    margin-bottom: 25px;
+    border-radius: 12%;
+    @include sp{
+      max-width: 150px;
+    }
+  }
+  &__name{
+    font-size: 12px;
+  }
+  &__txt{
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: left;
+    @include tab{
+      line-height: 1.8;
+    }
+  }
+}
+// スライドバー色変更
+.swiper-button-prev {
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%2375A1BA'%2F%3E%3C%2Fsvg%3E");
+  left: 0px;
+  @include tab{
+    background-size: 17px 37px;
+  }
+}
+.swiper-button-next {
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%2375A1BA'%2F%3E%3C%2Fsvg%3E");
+  right: 0px;
+  @include tab{
+    background-size: 17px 37px;
+  }
+}
+.swiper-pagination-bullet-active{
+  background: $color-blue;
+}
+// start faq
+.faq {
+  padding:60px 0 50px;
+  &__accordion {
+    &-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    &-title{
+      font-size: 16px;
+      line-height: 1.1;
+      color: $color-black;
+      padding: 20px;
+      &:hover{
+          cursor: pointer;
+          background-color: $background-gray;
+      }
+      @include tab{
+        font-size: 14px;
+        padding: 10px 40px 10px 10px;
+        line-height: 1.5;
+      }
+    }
+    &-container &-title {
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+      margin-bottom: 8px;
+      // icon設定
+      &::after {
+        content: "";
+        position: absolute;
+        right: 25px;
+        top: 38%;
+        transition: all 0.2s ease-in-out;
+        display: block;
+        width: 14px;
+        height: 14px;
+        border-top: solid 5px $color-blue;
+        border-right: solid 5px $color-blue;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+        @include sp{
+          width: 12px;
+          height: 12px;
+        }
+      }
+      &.open::after {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+          top: 45%;
+      }
+    }
+    /*CSS for CodePen*/
+    &-content {
+      font-size: 14px;
+      line-height: 1.8;
+      padding: 20px 62px 20px 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e5e5e5;
+      @include sp{
+        padding: 0;
+      }
+    }
+    &-span{
+      font-size: 16px;
+      color: $color-blue;
+      margin-right: 10px;
+    }
+  }
+}
+// end faq
+// start notice
+.notice{
+  padding:60px 0 50px;
+  background-color: $background-gray;
+  &__wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__list{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #707070;
+    padding-left: 20px;
+    font-size: 14px;
+    padding-bottom: 5px;
+    margin-bottom: 35px;
+    line-height: 2;
+    &:hover{
+      color: $color-blue;
+
+    }
+    @include tab{
+      flex-direction: column;
+      align-items: stretch;
+      margin-bottom: 21.5px;
+    }
+  }
+  &__date{
+    width: 20%;
+  }
+  // ここから切り替え設定
+  &__label{
+      margin-right: 5px;
+      order: -1;
+      margin-bottom: 74px ;
+      transition: all 0.2s ease;
+      display: inline-block;
+      position: relative;
+      padding: 5px;
+      font-size: 14px;
+
+      &:hover{
+          transform: scale(1.05);
+      }
+      &:nth-child(2){
+          margin-right: 53px;
+      }
+  }
+  &__content {
+      width: 100%;
+      display: none;
+  }
+  /* アクティブなタブ */
+  &__switch:checked+.notice__label {
+      color: $color-white;
+      background-color: $color-blue;
+      padding: 5px;
+  }
+  &__switch:checked+&__label+&__content {
+       display: block;
+  }
+  /* ラジオボタン非表示 */
+  &__switch {
+      display: none;
+  }
+}
+// end notice
+// start contact
+.contact{
+  background-image: url(../img/img/book.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 100px 0 105px;
+  width: 100%;
+  height: 550px;
+  @include tab{
+    height: 465px;
+  }
+  &__box{
+    margin: 0 auto;
+    width: 66%;
+    height: 350px;
+    background-color: rgba(#FFFFFF,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include tab{
+      height: 317px;
+      }
+  }
+  &__ttl{
+    margin-bottom: 15px;
+    font-size: 32px;
+    @include tab{
+      font-size: 20px;
+    }
+  }
+  &__txt{
+    font-size: 22px;
+    @include tab{
+      font-size: 18px;
+    }
+  }
+  &__btn{
+    max-width: 250px;
+    height: 60px;
+    text-align: center;
+    background: linear-gradient(-135deg, #E59BA2, #E8B57A);
+    line-height: 60px;
+    margin-top: 57px;
+    border-radius: 5px;
+    @include tab{
+      margin-top: 40px;
+      line-height: 52px;
+      max-width: 216px;
+      height: 52px;
+    }
+    &:hover{
+      transform: scale(1.05, 1.05);
+    }
+    &-txt{
+      font-size: 18px;
+      color: $color-white;
+      @include sp{
+        font-size: 16px;
+      }
+    }
+    &-link{
+      display: block;
+      width: 250px;
+      height: 60px;
+      @include tab{
+        width: 215px;
+        height: 52px;
+      }
+      @include sp{
+        max-width: 180px;
+        height: 45px;
+      }
+    }
+    @include sp{
+      height: 45px;
+      line-height: 45px;
+      max-width: 200px;
+      margin: 0;
+    }
+  }
+  @include sp{
+    display: none;
+  }
+  // ここからsp contact ボタン
+  &__sp{
+    display: none;
+    @include sp{
+      height: 60px;
+      background-color: $color-black;
+      position: fixed;/* bodyに対しての絶対位置指定 */
+      bottom: 0;
+      z-index: 999;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+// end contact
+// start footer
+.footer{
+  height: 68px;
+  background-color: #DCDCDC;
+  text-align: center;
+  @include sp{
+    margin-bottom: 60px;
+    height: 50px;
+  }
+  &__copy{
+    font-size: 14px;
+    color: $color-white;
+    line-height: 68px;
+    @include tab{
+      font-size: 12px;
+    }
+    @include sp{
+      line-height: 50px;
+      font-size: 12px;
+    }
+  }
+}
+
+/* --------------------------------------------------------
+  jQuery
+  -------------------------------------------------------- */
+
+// jQuery スムーススクロール トップへ戻る
+#js-scroll-top {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 99;
+  @include tab{
+      right: 10px;
+  }
+  @include sp{
+      bottom: 85px;
+  }
+}
+  .js-scroll-top__link {
+  font-size: 35px;
+  padding: 10px 20px;
+  background-color: #ececec;
+  @include sp{
+      font-size: 24px;
+  }
+}
+  .fa-angle-double-up {
+      color: $color-white;
+  }
+// end jQuery スムーススクロール トップへ戻る

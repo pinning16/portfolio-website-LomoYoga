@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- スライト CDNでCSSを読み込み-->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/stylesheet.min.css">
+    <link rel="stylesheet" href="css/destyle.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- fontawesome swiper button デザイン -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <!-- flatpockr 読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- fontawesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <!--ファビコン追加  -->
+    <link rel="icon" type="image/x-icon" href="../img/logo/logo-white.png">
+    <meta name="description" content="Lomo Yoga【レッスン予約】">
+    <meta name="robots" content="noindex,nofollow" /> <!-- ポートフォリオ用-->
+    <title>Lomo Yoga【レッスン予約】</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <a href="../index.html"><img class="header__logo" src="../img/logo/logo-white.png" alt="#"></a>
+            <nav class="header__nav">
+                <ul class="header__list">
+                    <li class="header__item"><a class="header__item-link" href="../index.html#about">About</a></li>
+                    <li class="header__item"><a class="header__item-link" href="../index.html#studio">Studio</a></li>
+                    <li class="header__item"><a class="header__item-link" href="../index.html#menu">Menu</a></li>
+                    <li class="header__item"><a class="header__item-link" href="../index.html#faq">FAQ</a></li>
+                    <li class="header__item"><a class="header__item-link" href="index.html">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- start ハンバガーメニュー -->
+            <nav class="sp-nav">
+                <ul class="sp-nav__list">
+                    <li class="sp-nav__item"><a href="../index.html#about">About</a></li>
+                    <li class="sp-nav__item"><a href="../index.html#studio">Studio</a></li>
+                    <li class="sp-nav__item"><a href="../index.html#menu">Menu</a></li>
+                    <li class="sp-nav__item"><a href="../index.html#faq">FAQ</a></li>
+                    <li class="sp-nav__item"><a href="index.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="navToggle">
+                <span class="navToggle__span"></span>
+                <span class="navToggle__span"></span>
+                <span class="navToggle__span"></span>
+            </div>
+            <!-- end ハンバガーメニュー -->
+        </div>
+    </header>
+    <main>
+    </main>
+    <section class="mv">
+        <div class="mv__content">
+            <h1 class="mv__ttl">Trial Lesson<br><span class="mv__ttl-span">体験レッスンのご案内</span></h1>
+        </div>
+    </section>
+<section id="contact" class="contact">
+    <div class="container">
+        <h3 class="contact__title">体験レッスン予約</h3>
+        <form id="js-form" class="contact__box" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdBe5HX0-BpG9BYgHzF_6cJqwe8mlKafkDeuS4UBtHQx4GECw/formResponse" method="post" novalidate>
+            <ul  class="contact__list">
+                <li class="contact__item">
+                    <label  class="contact__label" for="datepicker">日時選択
+                    <span class="contact__note">必須</span></label>
+                    <input
+                        name="entry.2077427182"
+                        class="contact__text-input"
+                        type="date"
+                        id="datepicker"
+                        placeholder="日時を選択してください"
+                        required
+                        >
+                </li>
+                <li class="contact__item">
+                    <label class="contact__label" for="selction">ご体験レッスン</label>
+                    <select class="contact__text-input" name="entry.1335095685" id="selction">
+                        <option name="entry.1335095685" value="">レッスンを選択してください</option>
+                        <option name="entry.1335095685"  value="①適切あ筋肉">①適切あ筋肉</option>
+                        <option name="entry.1335095685"  value="②マシンピラティス">②マシンピラティス</option>
+                        <option name="entry.1335095685"  value="③脂肪コントロール">③脂肪コントロール</option>
+                        <option name="entry.1335095685"  value="④パワーヨガ">④パワーヨガ</option>
+                        <option name="entry.1335095685"  value="⑤スリムアップヨガ">⑤スリムアップヨガ</option>
+                        <option name="entry.1335095685"  value="⑥アシュタンガヨガ">⑥アシュタンガヨ</option>
+                    </select>
+                </li>
+                <li class="contact__item">
+                    <label for="yourname" class="contact__label">お名前
+                        <span class="contact__note">必須</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="yourname"
+                        name="entry.1371038239"
+                        placeholder="例：Wang Pin Ning"
+                        required
+                        class="contact__text-input validate[required]"
+                        data-errormessage-value-missing="必須項目を入力してください"
+                        data-prompt-position="topRight"
+                    >
+                </li>
+                <li class="contact__item">
+                    <label for="email" class="contact__label">メールアドレス
+                        <span class="contact__note">必須</span>
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="entry.1288384608"
+                        placeholder="例：Example@example.com"
+                        required
+                        class="contact__text-input validate[required,custom[email]]"
+                        data-errormessage-value-missing="必須項目を入力してください"
+                        data-errormessage-custom-error="メールアドレスの形式で入力してください"
+                        data-prompt-position="topRight"
+                    >
+                </li>
+            </ul>
+            <!-- 送信ボタン -->
+            <div class="contact__submit-wrapper">
+                <div class="contact__inner">
+                    <button type="submit" id="js-submit" class="contact__button button--disabled button--fadeout">Submit</button>
+                </div>
+                <p class="contact__end-message">ご予約ありがとうございました</p>
+                <p class="contact__false-message">送信が失敗しました</p>
+            </div>
+        </form>
+    </div>
+
+</section>
+<footer class="footer">
+    <small class="footer__copy">Copyright ©︎lomo yoga all rights reserved</small>
+</footer>
+<!----------------------------------jQuery---------------------------------->
+<!-- jQueryライブラリの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- jsファイルの読み込み-->
+<script src="js/import.js"></script>
+
+<!-- カレンダー 機能設定 -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+<script>
+    flatpickr.localize(flatpickr.l10ns.ja);
+    flatpickr('#datepicker', {
+        minDate: "today",
+        // 基本的にID（又はクラス名）を指定した後に、カンマ区切りでオプションを羅列していくだけでどんどん機能が追加できます。
+        // mode: "range"
+
+    });
+</script>
+<!--flatpickr 外観設定-白の枠あり -->
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
+
+<!-- jQuery jQuery-Validation-Engineフォームバリデーション の読み込み -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/languages/jquery.validationEngine-ja.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery.validationEngine.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+</body>
+</html>
